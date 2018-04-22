@@ -20,5 +20,5 @@ public abstract class Animal {
 		kDie
 	}
 
-
+	public abstract Actions act();
 }
