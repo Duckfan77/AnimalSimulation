@@ -10,7 +10,7 @@ public class Prey extends Animal{
 	}
 
 	@Override
-	public Actions act() {
+	public Actions act(int extraCost) {
 		return null;
 	}
 }
