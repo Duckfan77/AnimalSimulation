@@ -11,6 +11,8 @@ import java.util.Stack;
 public class Cell {
 	private int plantCount;
 	private List<Animal> animals;
+	private List<Prey> prey;
+	private List<Pred> pred;
 	private int preyCount=0;
 	private int predCount=0;
 	private Cell[][] area;
@@ -22,13 +24,19 @@ public class Cell {
 		this.plantCount=plantCount;
 
 		animals=new ArrayList<>();
+		pred=new ArrayList<>();
+		prey=new ArrayList<>();
 
 		for(int i=0;i<preyCount;i++){
-			animals.add(new Prey(this));
+			Prey p = new Prey(this);
+			animals.add(p);
+			prey.add(p);
 		}
 
 		for(int i=0;i<predCount;i++){
-			animals.add(new Pred(this));
+			Pred p = new Pred(this);
+			animals.add(p);
+			pred.add(p);
 		}
 
 		this.row=row;
@@ -85,9 +93,12 @@ public class Cell {
 		if(out){
 			if(a instanceof Prey){
 				preyCount--;
+				prey.remove(a);
 			}else{
 				predCount--;
+				pred.remove(a);
 			}
+			animals.remove(a);
 			return true;
 		}else{
 			return false;
@@ -130,10 +141,24 @@ public class Cell {
 		return predCount;
 	}
 
+	public Prey getPrey(){
+		if(preyCount>0)
+			return prey.get(0);
+		return null;
+	}
+
+	public Pred getPred(){
+		if(predCount>0)
+			return pred.get(0);
+		return null;
+	}
+
 	/**
 	 * Causes each {@code Animal} to act, and updates the amount of plants.
 	 */
 	public void tick(){
+		for(Animal a:animals){
 
+		}
 	}
 }
