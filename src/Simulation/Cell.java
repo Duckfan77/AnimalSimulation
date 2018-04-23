@@ -40,6 +40,34 @@ public class Cell {
 		return null;
 	}
 
+	public boolean removeAnimal(Animal a){
+		boolean out = animals.remove(a);
+		if(out){
+			if(a instanceof Prey){
+				preyCount--;
+			}else{
+				predCount--;
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public boolean addAnimal(Animal a){
+		boolean out = animals.add(a);
+		if(out){
+			if(a instanceof Prey){
+				preyCount++;
+			}else{
+				predCount++;
+			}
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public void tick(){
 
 	}
