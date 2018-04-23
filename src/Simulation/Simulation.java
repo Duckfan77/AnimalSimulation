@@ -5,7 +5,7 @@ public class Simulation {
 		Cell[][] area = new Cell[Values.DIM_HEIGHT][Values.DIM_WIDTH];
 		for(int i=0;i<area.length;i++){
 			for(int j=0;j<area[i].length;j++){
-				area[i][j]=new Cell(area,Values.CELL_PREYINIT,Values.CELL_PREDINIT,Values.CELL_PLANTINIT);
+				area[i][j]=new Cell(area,i,j,Values.CELL_PREYINIT,Values.CELL_PREDINIT,Values.CELL_PLANTINIT);
 			}
 		}
 

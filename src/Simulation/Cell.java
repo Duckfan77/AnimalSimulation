@@ -1,5 +1,6 @@
 package Simulation;
 
+import Simulation.Animal.Animal;
 import Simulation.Animal.Pred;
 import Simulation.Animal.Prey;
 
@@ -8,23 +9,35 @@ import java.util.List;
 
 public class Cell {
 	private int plantCount;
-	private List<Prey> prey;
-	private List<Pred> pred;
+	private List<Animal> animals;
+	private int preyCount=0;
+	private int predCount=0;
 	private Cell[][] area;
+	private int row;
+	private int col;
 
-	public Cell(Cell[][] area, int PreyCount, int PredCount, int plantCount){
+	public Cell(Cell[][] area, int row, int col, int preyCount, int predCount, int plantCount){
 		this.area=area;
 		this.plantCount=plantCount;
 
-		prey=new ArrayList<>();
-		for(int i=0;i<PreyCount;i++){
-			prey.add(new Prey(this));
+		animals=new ArrayList<>();
+
+		for(int i=0;i<preyCount;i++){
+			animals.add(new Prey(this));
 		}
 
-		pred=new ArrayList<>();
-		for(int i=0;i<PredCount;i++){
-			pred.add(new Pred(this));
+		for(int i=0;i<predCount;i++){
+			animals.add(new Pred(this));
 		}
+
+		this.row=row;
+		this.col=col;
+		this.predCount=predCount;
+		this.preyCount=preyCount;
+	}
+
+	public Cell[] getNeighbors(){
+		return null;
 	}
 
 	public void tick(){
