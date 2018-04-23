@@ -118,6 +118,18 @@ public class Cell {
 		}
 	}
 
+	public int getPlantCount(){
+		return plantCount;
+	}
+
+	public int getPreyCount(){
+		return preyCount;
+	}
+
+	public int getPredCount(){
+		return predCount;
+	}
+
 	/**
 	 * Causes each {@code Animal} to act, and updates the amount of plants.
 	 */
