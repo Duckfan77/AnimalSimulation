@@ -37,6 +37,16 @@ public class Cell {
 		this.preyCount=preyCount;
 	}
 
+	/**
+	 * Gets the {@code Cell}s that are adjacent to {@code this}
+	 *
+	 * <p>
+	 *     Gets all {@code Cell}s adjacent, where adjacent means the row or column was changed by one, but not
+	 *     both.
+	 * </p>
+	 *
+	 * @return an array of {@code Cell}s all adjacent to {@code this}
+	 */
 	public Cell[] getNeighbors(){
 		Stack<Cell> c=new Stack();
 		if(row!=0){
@@ -60,6 +70,16 @@ public class Cell {
 		return out;
 	}
 
+	/**
+	 * Removes {@code Animal a} from the {@code Cell}
+	 *
+	 * <p>
+	 * Removes the {@code Animal} from the {@code Cell}, updating the count of {@code Pred} or {@code Prey} accordingly
+	 * </p>
+	 *
+	 * @param a the {@code Animal} to remove
+	 * @return {@code true} if the removal is successful<br/>{@code false} if the removal fails
+	 */
 	public boolean removeAnimal(Animal a){
 		boolean out = animals.remove(a);
 		if(out){
@@ -74,6 +94,16 @@ public class Cell {
 		}
 	}
 
+	/**
+	 * Adds {@code Animal a} to the {@code Cell}
+	 *
+	 * <p>
+	 * Adds the {@code Animal} to the {@code Cell}, updating the count of {@code Pred} or {@code Prey} accordingly
+	 * </p>
+	 *
+	 * @param a the {@code Animal} to add
+	 * @return {@code true} if the addition is successful<br/>{@code false} if the addition fails
+	 */
 	public boolean addAnimal(Animal a){
 		boolean out = animals.add(a);
 		if(out){
@@ -88,6 +118,9 @@ public class Cell {
 		}
 	}
 
+	/**
+	 * Causes each {@code Animal} to act, and updates the amount of plants.
+	 */
 	public void tick(){
 
 	}
