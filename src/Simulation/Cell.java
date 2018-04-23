@@ -6,6 +6,7 @@ import Simulation.Animal.Prey;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Cell {
 	private int plantCount;
@@ -37,7 +38,26 @@ public class Cell {
 	}
 
 	public Cell[] getNeighbors(){
-		return null;
+		Stack<Cell> c=new Stack();
+		if(row!=0){
+			c.push(area[row-1][col]);
+		}
+		if(col!=0){
+			c.push(area[row][col-1]);
+		}
+		if(row!=Values.DIM_WIDTH){
+			c.push(area[row+1][col]);
+		}
+		if(col!=Values.DIM_HEIGHT){
+			c.push(area[row][col+1]);
+		}
+
+		Cell[] out = new Cell[c.size()];
+		for(int i=0;i<c.size();i++){
+			out[i]=c.pop();
+		}
+
+		return out;
 	}
 
 	public boolean removeAnimal(Animal a){
