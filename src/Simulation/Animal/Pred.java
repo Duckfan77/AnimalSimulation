@@ -10,7 +10,36 @@ public class Pred extends Animal{
 
 	@Override
 	public Actions act(int extraCost) {
-		return null;
+		if(health>Values.PREDH_SPAWN){
+			if(Math.random()>spawnRate){
+				spawn(Values.PREDCOST_SPAWN+extraCost);
+				return Actions.kSpawn;
+			}
+		}
+
+
+		int num = (int)(Math.random()*2);
+		if(health<Values.PREDCOST_MOVE*2){
+			num=0;
+		}
+		Actions action=null;
+		switch (num){
+			case 0:
+				eat(Values.PREDCOST_EAT+extraCost);
+				action=Actions.kEat;
+				break;
+			case 1:
+				move(Values.PREDCOST_MOVE+extraCost);
+				action=Actions.kMove;
+				break;
+		}
+
+		if(health<0){
+			die();
+			action=Actions.kDie;
+		}
+
+		return action;
 	}
 
 	@Override
@@ -42,7 +71,7 @@ public class Pred extends Animal{
 		}
 
 		Pred newAnimal = new Pred(loc);
-		newAnimal.health=health/2;
+		newAnimal.health=Values.PREDH_INIT;
 		loc.addAnimal(newAnimal);
 
 		health-=cost;
