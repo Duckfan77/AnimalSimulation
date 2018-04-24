@@ -4,9 +4,10 @@ import Simulation.Animal.Animal;
 import Simulation.Animal.Pred;
 import Simulation.Animal.Prey;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Cell {
 	private int plantCount;
@@ -23,9 +24,9 @@ public class Cell {
 		this.area=area;
 		this.plantCount=plantCount;
 
-		animals=new ArrayList<>();
-		pred=new ArrayList<>();
-		prey=new ArrayList<>();
+		animals=new CopyOnWriteArrayList<>();
+		pred=new CopyOnWriteArrayList<>();
+		prey=new CopyOnWriteArrayList<>();
 
 		for(int i=0;i<preyCount;i++){
 			Prey p = new Prey(this);
@@ -63,15 +64,15 @@ public class Cell {
 		if(col!=0){
 			c.push(area[row][col-1]);
 		}
-		if(row!=Values.DIM_WIDTH){
+		if(row!=Values.DIM_HEIGHT-1){
 			c.push(area[row+1][col]);
 		}
-		if(col!=Values.DIM_HEIGHT){
+		if(col!=Values.DIM_WIDTH-1){
 			c.push(area[row][col+1]);
 		}
 
 		Cell[] out = new Cell[c.size()];
-		for(int i=0;i<c.size();i++){
+		for(int i=0;i<=c.size();i++){
 			out[i]=c.pop();
 		}
 
@@ -120,8 +121,10 @@ public class Cell {
 		if(out){
 			if(a instanceof Prey){
 				preyCount++;
+				prey.add((Prey) a);
 			}else{
 				predCount++;
+				pred.add((Pred) a);
 			}
 			return true;
 		}else{
@@ -153,12 +156,26 @@ public class Cell {
 		return null;
 	}
 
+	public void decrementPlant(){
+		if(plantCount>0)
+			plantCount--;
+	}
+
 	/**
 	 * Causes each {@code Animal} to act, and updates the amount of plants.
 	 */
 	public void tick(){
+		System.out.println("\n"+this);
 		for(Animal a:animals){
+			int extraCost=0;
+			if(a instanceof Prey && preyCount>Values.CAP_PREY){
+				extraCost=preyCount-Values.CAP_PREY;
+			}else if(predCount>Values.CAP_PRED){
+				extraCost=predCount-Values.CAP_PRED;
+			}
 
+			a.act(extraCost);
 		}
+
 	}
 }
