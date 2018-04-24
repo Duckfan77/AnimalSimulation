@@ -56,4 +56,8 @@ public abstract class Animal {
 		loc=options[choice];
 		return true;
 	}
+
+	public boolean die(){
+		return loc.removeAnimal(this);
+	}
 }
