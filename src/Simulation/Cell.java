@@ -72,7 +72,7 @@ public class Cell {
 		}
 
 		Cell[] out = new Cell[c.size()];
-		for(int i=0;i<=c.size();i++){
+		for(int i=0;i<out.length;i++){
 			out[i]=c.pop();
 		}
 
@@ -165,7 +165,7 @@ public class Cell {
 	 * Causes each {@code Animal} to act, and updates the amount of plants.
 	 */
 	public void tick(){
-		System.out.println("\n"+this);
+		//System.out.println("\n"+this);
 		for(Animal a:animals){
 			int extraCost=0;
 			if(a instanceof Prey && preyCount>Values.CAP_PREY){
@@ -177,5 +177,9 @@ public class Cell {
 			a.act(extraCost);
 		}
 
+		plantCount*=1.3;
+		if(plantCount>Values.CAP_PLANTS){
+			plantCount=Values.CAP_PLANTS;
+		}
 	}
 }
