@@ -22,7 +22,7 @@ public abstract class Animal {
 
 	public abstract Actions act(int extraCost);
 
-	public abstract boolean eat();
+	public abstract boolean eat(int cost);
 
 	/**
 	 * Creates a new {@code Animal}

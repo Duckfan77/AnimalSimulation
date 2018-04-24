@@ -15,7 +15,13 @@ public class Prey extends Animal{
 	}
 
 	@Override
-	public boolean eat() {
+	public boolean eat(int cost) {
+		health-=cost;
+		if(Math.random() * (loc.getPlantCount()/Values.CAP_PLANTS)>0.5){
+			health+=Values.PREYGAIN_EAT;
+			loc.decrementPlant();
+			return true;
+		}
 		return false;
 	}
 

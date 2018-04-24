@@ -3,6 +3,7 @@ package Simulation;
 public class Values {
 	public static final int CAP_PREY=10;
 	public static final int CAP_PRED=5;
+	public static final int CAP_PLANTS=30;
 
 	public static final int DIM_WIDTH=1;
 	public static final int DIM_HEIGHT=1;
@@ -19,10 +20,12 @@ public class Values {
 	public static final int PREYCOST_SPAWN=4;
 	public static final int PREYCOST_MOVE=2;
 	public static final int PREYCOST_EAT=1;
+	public static final int PREYGAIN_EAT=3;
 
 	public static final int PREDCOST_SPAWN=6;
 	public static final int PREDCOST_MOVE=1;
 	public static final int PREDCOST_EAT=2;
+	public static final int PREDGAIN_EAT=7;
 
 	public static final int CELL_PREDINIT=2;
 	public static final int CELL_PREYINIT=5;

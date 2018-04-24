@@ -14,7 +14,13 @@ public class Pred extends Animal{
 	}
 
 	@Override
-	public boolean eat() {
+	public boolean eat(int cost) {
+		health-=cost;
+		if(Math.random() * (loc.getPreyCount()/Values.CAP_PREY)>0.5){
+			health+=Values.PREDGAIN_EAT;
+			loc.removeAnimal(loc.getPrey());
+			return true;
+		}
 		return false;
 	}
 
