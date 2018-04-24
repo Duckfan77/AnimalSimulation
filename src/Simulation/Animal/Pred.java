@@ -12,4 +12,35 @@ public class Pred extends Animal{
 	public Actions act(int extraCost) {
 		return null;
 	}
+
+	@Override
+	public boolean eat() {
+		return false;
+	}
+
+	/**
+	 * Creates a new {@code Pred}
+	 *
+	 * <p>
+	 *     Creates a new {@code Pred} in the same {@code Cell} as {@code this}, and with half the health of
+	 *     {@code this}. Fails if insufficient health is present.
+	 * </p>
+	 *
+	 * @param cost the cost of the spawning
+	 * @return {@code true} if succeeds<br/>{@code false} if fails.
+	 */
+	@Override
+	public boolean spawn(int cost) {
+		if(health<Values.PREDH_SPAWN){
+			return false;
+		}
+
+		Pred newAnimal = new Pred(loc);
+		newAnimal.health=health/2;
+		loc.addAnimal(newAnimal);
+
+		health-=cost;
+
+		return true;
+	}
 }
