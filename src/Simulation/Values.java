@@ -31,6 +31,7 @@ public class Values {
 	public static final int CELL_PREYINIT=5;
 	public static final int CELL_PLANTINIT=10;
 
-	public static final int SIMTIME=100;
+	public static final int SIMTIME=1000;
+	public static final String outfile="output.csv";
 
 }
